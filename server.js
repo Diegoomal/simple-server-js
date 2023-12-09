@@ -21,11 +21,21 @@ app.delete( '/api/person',      personController.delete   );                    
 
 const userController = require('./controllers/userController')(db);
 db.run(userController.getSQLCreateTable());                                     // create table if not exist
-app.get(    '/api/user',      userController.readall  );                        // read
-app.get(    '/api/user/:id',  userController.readbyid );                        // read
-app.post(   '/api/user',      userController.create   );                        // create
-app.put(    '/api/user/:id',  userController.update   );                        // update
-app.delete( '/api/user/:id',  userController.delete   );                        // delete
+app.get(    '/api/user',          userController.readall  );                    // read
+app.get(    '/api/user/:id',      userController.readbyid );                    // read
+app.post(   '/api/user',          userController.create   );                    // create
+app.put(    '/api/user/:id',      userController.update   );                    // update
+app.delete( '/api/user/:id',      userController.delete   );                    // delete
+
+const addressController = require('./controllers/addressController')(db);
+db.run(addressController.getSQLCreateTable());                                     // create table if not exist
+app.get(    '/api/address',      addressController.readall  );                  // read
+app.get(    '/api/address/:id',  addressController.readbyid );                  // read
+app.post(   '/api/address',      addressController.create   );                  // create
+app.put(    '/api/address/:id',  addressController.update   );                  // update
+app.delete( '/api/address/:id',  addressController.delete   );                  // delete
+
+
 
 // Iniciar o servidor
 app.listen(port, () => {

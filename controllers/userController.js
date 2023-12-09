@@ -7,73 +7,20 @@ const userController = (db) => {
             _sql = `
                 CREATE TABLE IF NOT EXISTS user (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    username TEXT NOT NULL,
-                    name TEXT NOT NULL,
-                    lastname TEXT NOT NULL,
+                    username VARCHAR(255) NOT NULL,
+                    name VARCHAR(255) NOT NULL,
+                    lastname VARCHAR(255) NOT NULL,
                     birthdate DATE,
-                    quickdescription TEXT,
-                    operationradius TEXT,
-                    url_img_background TEXT,
-                    url_img_user TEXT,
-                    email TEXT NOT NULL,
-                    password TEXT NOT NULL
+                    quickdescription VARCHAR(255),
+                    operationradius VARCHAR(255),
+                    url_img_background VARCHAR(255),
+                    url_img_user VARCHAR(255),
+                    email VARCHAR(255) NOT NULL,
+                    password VARCHAR(255) NOT NULL
                 );
             `
             return _sql;
         },
-
-        // create(req, res) {
-
-        //     const {
-        //         username,
-        //         name,
-        //         lastname,
-        //         birthdate,
-        //         quickdescription,
-        //         operationradius,
-        //         url_img_background,
-        //         url_img_user,
-        //         email,
-        //         password
-        //     } = req.body;
-
-        //     // Verificar se os campos obrigatórios estão presentes
-        //     if (!username || !name || !lastname || !email || !password) {
-        //         return res.status(400).send('Campos obrigatórios ausentes.');
-        //     }
-
-        //     const query = `
-        //         INSERT INTO user (
-        //             username, name, lastname, birthdate, quickdescription,
-        //             operationradius, url_img_background, url_img_user,
-        //             email, password
-        //         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        //     `;
-
-        //     db.run(
-        //         query,
-        //         [
-        //             username,
-        //             name,
-        //             lastname,
-        //             birthdate,
-        //             quickdescription,
-        //             operationradius,
-        //             url_img_background,
-        //             url_img_user,
-        //             email,
-        //             password
-        //         ],
-        //         function (err) {
-        //             if (err) {
-        //                 return res.status(500).send(err.message);
-        //             }
-
-        //             res.status(201).send(`Usuário ${this.lastID} criado com sucesso.`);
-        //         }
-        //     );
-
-        // },
 
         async create(req, res) {
             const {
@@ -96,7 +43,8 @@ const userController = (db) => {
 
             try {
                 // Gerar o hash da senha
-                const hashedPassword = await bcrypt.hash(password, 10); // O segundo parâmetro é o custo do hash (quanto maior, mais seguro, mas mais lento)
+                // O segundo parâmetro é o custo do hash (quanto maior, mais seguro, mas mais lento)
+                const hashedPassword = await bcrypt.hash(password, 10); 
 
                 const query = `
                     INSERT INTO user (
