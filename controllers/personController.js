@@ -1,30 +1,38 @@
 const personController = {
 
+
+    getSQLCreateTable () {
+        _sql = `
+            CREATE TABLE IF NOT EXISTS people (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT,
+            name TEXT,
+            birthdate TEXT,
+            quickdescription TEXT,
+            address TEXT
+            )
+        `
+        return _sql;
+    },
+
     create(req, res) {
-        res.send('doNew - exemplo resp');
+        res.send('func - create');
     },
 
     readall(req, res) {
-        res.send('getAll - exemplo resp');
-        db.all('SELECT * FROM people', (err, rows) => {
-            if (err) {
-                res.status(500).json({ error: err.message });
-                return;
-            }
-            res.json(rows);
-        });
+        res.send('func - readall');
     },
   
     readbyid(req, res) {
-        res.send('getById - exemplo resp');
+        res.send('func - readbyid');
     },
 
     update(req, res) {
-        res.send('doUpdate - exemplo resp');
+        res.send('func - update');
     },
 
     delete(req, res) {
-        res.send('doDelete - exemplo resp');
+        res.send('func - delete');
     }
 
 };
