@@ -13,12 +13,11 @@ const db = new sqlite3.Database('database.db');
 
 const personController = require('./controllers/personController');
 db.run(personController.getSQLCreateTable());                 // create table if not exist
-app.get(    '/api/person',      personController.readall);    // read
-app.get(    '/api/person/:id',  personController.readbyid);   // read
-app.post(   '/api/person',      personController.create);     // create
-app.put(    '/api/person',      personController.update);     // update
-app.delete( '/api/person',      personController.delete);     // delete
-
+app.get(    '/api/person',      personController.readall  );  // read
+app.get(    '/api/person/:id',  personController.readbyid );  // read
+app.post(   '/api/person',      personController.create   );  // create
+app.put(    '/api/person',      personController.update   );  // update
+app.delete( '/api/person',      personController.delete   );  // delete
 
 // Iniciar o servidor
 app.listen(port, () => {
