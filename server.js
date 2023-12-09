@@ -23,7 +23,7 @@ db.run(`
   )
 `);
 
-const personController = require('./controllers/personcControler');
+const personController = require('./controllers/personController');
 
 app.get(    '/api/person',      personController.getAll);   // read
 app.get(    '/api/person/:id',  personController.getById);  // read
