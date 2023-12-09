@@ -73,7 +73,7 @@ const userController = (db) => {
                             return res.status(500).send(err.message);
                         }
 
-                        res.status(201).send(`Usuário ${this.lastID} criado com sucesso.`);
+                        res.status(201).send(`user ${this.lastID} created with success.`);
                     }
                 );
             } catch (error) {

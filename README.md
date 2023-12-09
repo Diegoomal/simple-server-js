@@ -13,6 +13,10 @@ node server.js
 
 npm install --save-dev mocha chai supertest
 
+npm install -g mocha
+
+npm install chai-http --save-dev
+
 ### execute tests
 
 npm test

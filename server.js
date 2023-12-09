@@ -35,9 +35,9 @@ app.post(   '/api/address',      addressController.create   );                  
 app.put(    '/api/address/:id',  addressController.update   );                  // update
 app.delete( '/api/address/:id',  addressController.delete   );                  // delete
 
-
-
 // Iniciar o servidor
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+module.exports = server;
