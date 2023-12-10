@@ -1,28 +1,39 @@
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
 const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
 
-// Configuração do CORS
-app.use(cors());
-app.use(cors({
-  origin: 'http://localhost:4200', // ou a origem específica que você deseja permitir
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // se você estiver usando credenciais (como cookies), defina como true
-  optionsSuccessStatus: 204,
-}));
+// Configurar o middleware bodyParser
+app.use(bodyParser.json());
 
+// CORS
 app.use((req, res, next) => { 
-  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept"); 
+  // res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  // res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept"); 
+
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
   next(); 
 }); 
 
-// Configurar o middleware bodyParser
-app.use(bodyParser.json());
+// // Configuração do CORS
+// app.use(cors());
+// app.use(cors({
+//   origin: 'http://localhost:4200', // ou a origem específica que você deseja permitir
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // se você estiver usando credenciais (como cookies), defina como true
+//   optionsSuccessStatus: 204,
+// }));
+
+// app.get('/api/user/:id', function (req, res, next) {
+//   res.json({msg: 'This is CORS-enabled for only example.com.'})
+// })
 
 // Configurar a conexão com o banco de dados SQLite
 const db = new sqlite3.Database('database.db');
@@ -83,5 +94,15 @@ app.delete( '/api/professionalcontact/:id',  professionalContactController.delet
 const server = app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+// const server = http.createServer((_, res) => {
+//   res.statusCode = 200;
+//   res.setHeader('Content-Type', 'text/plain');
+//   res.end('Olá mundo!');
+// });
+
+// server.listen(port, hostname, () => {
+//   console.log(`Servidor rodando: http://${hostname}:${port}/`);
+// });
 
 module.exports = server;

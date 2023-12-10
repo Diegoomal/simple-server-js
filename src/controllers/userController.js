@@ -37,10 +37,10 @@ const userController = (db) => {
                 password
             } = req.body;
 
-            // Verificar se os campos obrigatórios estão presentes
-            if (!username || !name || !lastname || !email || !password) {
-                return res.status(400).send('Campos obrigatórios ausentes.');
-            }
+            // // Verificar se os campos obrigatórios estão presentes
+            // if (!username || !name || !lastname || !email || !password) {
+            //     return res.status(400).send('Campos obrigatórios ausentes.');
+            // }
 
             try {
                 // Gerar o hash da senha
