@@ -24,6 +24,7 @@ const userController = (db) => {
 
         async create(req, res) {
             const {
+                id,
                 username,
                 name,
                 lastname,
@@ -69,11 +70,18 @@ const userController = (db) => {
                         hashedPassword // Salvar o hash da senha no banco de dados
                     ],
                     function (err) {
-                        if (err) {
-                            return res.status(500).send(err.message);
-                        }
 
-                        res.status(201).send(`user ${this.lastID} created with success.`);
+                        if (err) { return res.status(500).send(err.message); }
+
+                        // Criar um objeto para a resposta JSON
+                        const responseObject = {
+                            id: this.lastID,
+                            message: `User ${this.lastID} created with success.`
+                        };
+
+                        // Retornar o objeto JSON como resposta
+                        res.status(201).send(responseObject);
+
                     }
                 );
             } catch (error) {

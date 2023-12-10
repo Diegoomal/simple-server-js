@@ -1,9 +1,25 @@
 const express = require('express');
+const cors = require('cors');
 const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
+
+// Configuração do CORS
+app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200', // ou a origem específica que você deseja permitir
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // se você estiver usando credenciais (como cookies), defina como true
+  optionsSuccessStatus: 204,
+}));
+
+app.use((req, res, next) => { 
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept"); 
+  next(); 
+}); 
 
 // Configurar o middleware bodyParser
 app.use(bodyParser.json());

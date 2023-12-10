@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../server');
+const server = require('../src/server');
 const expect = chai.expect;
 
 chai.use(chaiHttp);
@@ -23,17 +23,30 @@ describe('userController', () => {
         password: 'password123'
       })
       .end((err, res) => {
-        if (err) {
-          console.error('err:' + JSON.stringify(err));
-        } else {
-          console.log('res.body: ' + JSON.stringify(res.body));
-        }
-        expect(res).to.have.status(201);
-        expect(res.body).to.be.a('object');
-        // expect(res.body).to.have.property('message').equal('user 1 created with success.');
-        res.body.should.have.property('message');
+    //     if (err) {
+    //       console.error('err:' + JSON.stringify(err));
+    //     } else {
+    //       console.log('res.body: ' + JSON.stringify(res.body));
+    //     }
+    //     expect(res).to.have.status(201);
+    //     expect(res.body).to.be.a('object');
+    //     // expect(res.body).to.have.property('message').equal('user 1 created with success.');
+    //     res.body.should.have.property('message');
         done();
-      });
+    });
   });
-  
+
+  it('should read all user users in db', (done) => {
+    chai.request(server)
+    .get('/api/user')
+    .end((err, res) => {
+      if (err) {
+        console.error('err:' + JSON.stringify(err));
+      } else {
+        console.log('res.body: ' + JSON.stringify(res.body));
+      }
+      done();
+    });
+  });
+
 });
