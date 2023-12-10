@@ -39,12 +39,28 @@ app.put(    '/api/address/:id',  addressController.update   );                  
 app.delete( '/api/address/:id',  addressController.delete   );                  // delete
 
 const professionalExperienceController = require('./controllers/professionaExperienceController')(db);
-db.run(professionalExperienceController.getSQLCreateTable());                    // create table if not exist
-app.get(    '/api/professionalexperience',      professionalExperienceController.readall  ); // read
-app.get(    '/api/professionalexperience/:id',  professionalExperienceController.readbyid ); // read
-app.post(   '/api/professionalexperience',      professionalExperienceController.create   ); // create
-app.put(    '/api/professionalexperience/:id',  professionalExperienceController.update   ); // update
-app.delete( '/api/professionalexperience/:id',  professionalExperienceController.delete   ); // delete
+db.run(professionalExperienceController.getSQLCreateTable());                                   // create table if not exist
+app.get(    '/api/professionalexperience',      professionalExperienceController.readall  );    // read
+app.get(    '/api/professionalexperience/:id',  professionalExperienceController.readbyid );    // read
+app.post(   '/api/professionalexperience',      professionalExperienceController.create   );    // create
+app.put(    '/api/professionalexperience/:id',  professionalExperienceController.update   );    // update
+app.delete( '/api/professionalexperience/:id',  professionalExperienceController.delete   );    // delete
+
+const academicEducationController = require('./controllers/academicEducationController')(db);
+db.run(academicEducationController.getSQLCreateTable());                                        // create table if not exist
+app.get(    '/api/academiceducation',      academicEducationController.readall  );              // read
+app.get(    '/api/academiceducation/:id',  academicEducationController.readbyid );              // read
+app.post(   '/api/academiceducation',      academicEducationController.create   );              // create
+app.put(    '/api/academiceducation/:id',  academicEducationController.update   );              // update
+app.delete( '/api/academiceducation/:id',  academicEducationController.delete   );              // delete
+
+const professionalContactController = require('./controllers/professionalContactController')(db);
+db.run(professionalContactController.getSQLCreateTable());                                      // create table if not exist
+app.get(    '/api/professionalcontact',      professionalContactController.readall  );          // read
+app.get(    '/api/professionalcontact/:id',  professionalContactController.readbyid );          // read
+app.post(   '/api/professionalcontact',      professionalContactController.create   );          // create
+app.put(    '/api/professionalcontact/:id',  professionalContactController.update   );          // update
+app.delete( '/api/professionalcontact/:id',  professionalContactController.delete   );          // delete
 
 
 // Iniciar o servidor
