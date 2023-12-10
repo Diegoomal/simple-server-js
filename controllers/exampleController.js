@@ -1,4 +1,4 @@
-const personController  = (db) => {
+const exampleController = (db) => {
     return {
 
         getSQLCreateTable () {
@@ -34,4 +34,4 @@ const personController  = (db) => {
 
 };
 
-module.exports = personController;
+module.exports = exampleController;

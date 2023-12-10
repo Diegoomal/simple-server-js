@@ -27,8 +27,11 @@ app.post(   '/api/user',          userController.create   );                    
 app.put(    '/api/user/:id',      userController.update   );                    // update
 app.delete( '/api/user/:id',      userController.delete   );                    // delete
 
+const loginController = require('./controllers/loginController')(db);
+app.post(    '/api/login',          loginController.read  );                    // read
+
 const addressController = require('./controllers/addressController')(db);
-db.run(addressController.getSQLCreateTable());                                     // create table if not exist
+db.run(addressController.getSQLCreateTable());                                  // create table if not exist
 app.get(    '/api/address',      addressController.readall  );                  // read
 app.get(    '/api/address/:id',  addressController.readbyid );                  // read
 app.post(   '/api/address',      addressController.create   );                  // create
