@@ -35,6 +35,15 @@ app.post(   '/api/address',      addressController.create   );                  
 app.put(    '/api/address/:id',  addressController.update   );                  // update
 app.delete( '/api/address/:id',  addressController.delete   );                  // delete
 
+const professionalExperienceController = require('./controllers/professionaExperienceController')(db);
+db.run(professionalExperienceController.getSQLCreateTable());                    // create table if not exist
+app.get(    '/api/professionalexperience',      professionalExperienceController.readall  ); // read
+app.get(    '/api/professionalexperience/:id',  professionalExperienceController.readbyid ); // read
+app.post(   '/api/professionalexperience',      professionalExperienceController.create   ); // create
+app.put(    '/api/professionalexperience/:id',  professionalExperienceController.update   ); // update
+app.delete( '/api/professionalexperience/:id',  professionalExperienceController.delete   ); // delete
+
+
 // Iniciar o servidor
 const server = app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

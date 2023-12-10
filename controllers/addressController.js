@@ -5,7 +5,7 @@ const userController = (db) => {
             _sql = `
                 CREATE TABLE IF NOT EXISTS address (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    userid INTEGER,
+                    userid INTEGER NOT NULL,
                     street VARCHAR(255),
                     number VARCHAR(255),
                     complement VARCHAR(255),
@@ -119,10 +119,7 @@ const userController = (db) => {
                 query,
                 [street, number, complement, state, city, zipcode, country, latitude, longitude, addresstype, addressId],
                 function (err) {
-                    if (err) {
-                        return res.status(500).send(err.message);
-                    }
-
+                    if (err) { return res.status(500).send(err.message); }
                     res.send(`Endereço ${addressId} atualizado com sucesso.`);
                 }
             );
