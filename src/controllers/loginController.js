@@ -5,7 +5,8 @@ const loginController = (db) => {
         async read(req, res) {
             try {
                 const { email, password } = req.body;
-                const query = 'SELECT id, password FROM user WHERE email = ?;';
+                // const query = 'SELECT id, email FROM user WHERE email = ?;';
+                const query = 'SELECT * FROM user WHERE email = ?;';
                 
                 db.get(query, [email], async (err, row) => {
                     if (err) {
@@ -22,7 +23,8 @@ const loginController = (db) => {
 
                     if (isPasswordValid) {
                         // Senha válida, você pode retornar informações do usuário, como o ID
-                        res.json({ id: row.id });
+                        // res.json({ id: row.id });
+                        res.json( row );
                     } else {
                         // Senha inválida
                         res.status(401).send('Senha incorreta.');
